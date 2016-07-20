@@ -42,8 +42,8 @@ class Index_rd_repo(object):
     _type = 'buildfarm'
 
     def __init__(self, data, base_url):
-        assert 'type' in data, "Expected file type is '%s'" % Index._type
-        assert data['type'] == Index._type, \
+        assert 'type' in data, "Expected file type is '%s'" % Index_rd_repo._type
+        assert data['type'] == Index_rd_repo._type, \
             "Expected file type is '%s', not '%s' loaded from '%s'" % \
             (Index_rd_repo._type, data['type'], base_url)
 
@@ -58,10 +58,10 @@ class Index_rd_repo(object):
         # assert int(data['version']) > 1, \
         #     ("Unable to handle '%s' format version '%d' anymore, please " +
         #      "update your '%s' file to version '2'" %
-        #      (Index._type, int(data['version']), Index._type)
+        #      (Index_rd_repo._type, int(data['version']), Index_rd_repo._type)
         assert int(data['version']) in [1], \
             ("Unable to handle '%s' format version '%d', please update " +
-             "ros_buildfarm") % (Index._type, int(data['version']))
+             "ros_buildfarm") % (Index_rd_repo._type, int(data['version']))
         self.version = int(data['version'])
         self.rd_repo_name = data['rd_repo_name']
         self.rd_repo = data['rd_repo']
@@ -72,7 +72,7 @@ class Index_rd_repo(object):
             # if distributions is not a dict
             # raise an exception including the value
             # this can be used to notify users
-            # (e.g. if an index.yaml file has been deleted / moved)
+            # (e.g. if an Index_rd_repo.yaml file has been deleted / moved)
             if not isinstance(data['distributions'], dict):
                 raise RuntimeError(
                     ("Distributions type is invalid: expected 'dict', but " +
