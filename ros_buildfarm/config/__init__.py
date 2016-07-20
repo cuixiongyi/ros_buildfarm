@@ -39,6 +39,7 @@ import yaml
 
 from .doc_build_file import DocBuildFile
 from .index import Index
+from .index_rd_repo import Index_rd_repo
 from .loader import load_url
 from .release_build_file import ReleaseBuildFile
 from .source_build_file import SourceBuildFile
@@ -52,6 +53,13 @@ def get_index(url):
     data = yaml.load(yaml_str)
     base_url = os.path.dirname(url)
     return Index(data, base_url)
+
+def get_index_rd_repo(url):
+    logger.debug("Load rd_repo index from '%s'" % url)
+    yaml_str = load_url(url)
+    data = yaml.load(yaml_str)
+    base_url = os.path.dirname(url)
+    return Index_rd_repo(data, base_url)
 
 
 def get_distribution_file(index, rosdistro_name, build_file):

@@ -15,7 +15,7 @@ from ros_buildfarm.common \
 from ros_buildfarm.common import JobValidationError
 from ros_buildfarm.common import write_groovy_script_and_configs
 from ros_buildfarm.config import get_distribution_file
-from ros_buildfarm.config import get_index as get_config_index
+from ros_buildfarm.config import get_index_rd_repo as get_config_index
 from ros_buildfarm.config import get_source_build_files
 from ros_buildfarm.git import get_repository
 from ros_buildfarm.templates import expand_template
@@ -77,6 +77,11 @@ def configure_devel_job(
         if not repo.source_repository.version:
             raise JobValidationError(
                 "Repository '%s' has no source version" % repo_name)
+        repo.source_repository.name = config.rd_repo_name
+        repo.source_repository.url = config.rd_repo
+        repo.source_repository.version = config.rd_repo_branch
+        repo.source_repository.type = 'git'
+
         source_repository = repo.source_repository
 
     if os_name not in build_file.targets.keys():
