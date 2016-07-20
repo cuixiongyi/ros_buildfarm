@@ -45,7 +45,7 @@ class Index_rd_repo(object):
         assert 'type' in data, "Expected file type is '%s'" % Index._type
         assert data['type'] == Index._type, \
             "Expected file type is '%s', not '%s' loaded from '%s'" % \
-            (Index._type, data['type'], base_url)
+            (Index_rd_repo._type, data['type'], base_url)
 
         assert 'version' in data, \
             'Index file lacks required version information'
